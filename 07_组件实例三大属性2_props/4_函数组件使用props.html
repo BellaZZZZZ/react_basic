@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2_对props进行限制</title>
+  <title>4_函数组件使用props</title>
 </head>
 <body>
   <!--准备好一个容器-->
-  <div id="test1"></div>
-  <div id="test2"></div>
-  <div id="test3"></div>
+  <div id="test"></div>
   <!--引入react核心库-->
   <script type="text/javascript" src="../js/react.development.js"></script>
   <!--引入react-dom 用于支持react操作dom-->
@@ -18,23 +16,16 @@
   <script type="text/javascript" src="../js/babel.min.js"></script>
   <!--引入prop-types 用于对组件标签属性进行限制-->
   <script type="text/javascript" src="../js/prop-types.js"></script>
-
   <script type="text/babel">
-    //创建组件
-    class Person extends React.Component{
-      render(){
-        //console.log(this);
-        const {name,sex,age} = this.props
-        //props是只读的
-        //this.props.name = 'jack'//此行代码会报错，因为props是只读的
-        return(
-          <ul>
-            <li>姓名：{name}</li>
-            <li>性别：{sex}</li>
-            <li>年龄：{age+1}</li>
-          </ul>
-        )
-      }
+    function Person(props) {
+      const {name,sex,age} = props
+      return(
+        <ul>
+          <li>姓名：{name}</li>
+          <li>性别：{sex}</li>
+          <li>年龄：{age+1}</li>
+        </ul>
+      )
     }
     //对标签属性进行类型、必要性的限制
     Person.propTypes = {
@@ -49,16 +40,7 @@
       age:18//age默认为18
     }
     //渲染组件到页面
-    ReactDOM.render(<Person name="tom" speak={speak}/>,document.getElementById('test1'))
-    ReactDOM.render(<Person name="dom" sex="男" age={19}/>,document.getElementById('test2'))
-
-    const p = {name:'Amy',age:18,sex:'女'}
-    //console.log(...p);
-    ReactDOM.render(<Person {...p}/>,document.getElementById('test3'))
-
-    function speak(){
-      console.log('我说话了');
-    }
+    ReactDOM.render(<Person name={100}/>,document.getElementById('test'))
   </script>
 </body>
 </html>
