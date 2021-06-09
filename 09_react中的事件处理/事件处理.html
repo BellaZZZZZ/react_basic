@@ -21,9 +21,9 @@
     class Demo extends React.Component{
       /*
         (1) 通过omXxx属性指定事件处理函数（注意大小写
-          a.React使用的是自定义（合成）事件，而不是使用原生DOM事件
-          b.React中的事件是通过事件委托方式处理的（委托给组件最外层的元素）
-        (2) 通过event.target得到发生事件的DOM元素对象
+          a.React使用的是自定义（合成）事件，而不是使用原生DOM事件————为了更好的兼容性
+          b.React中的事件是通过事件委托方式处理的（委托给组件最外层的元素）————————为了高效
+        (2) 通过event.target得到发生事件的DOM元素对象 ————不要过度使用ref，发生事件是事件本身可以省略ref
       */
       //创建ref容器
       myRef = React.createRef()
@@ -36,9 +36,8 @@
       }
 
       //展示右侧输入框的数据
-      showData2 = ()=>{
-        const {current} = this.myRef2
-        alert(current.value);
+      showData2 = (event)=>{
+        alert(event.target.value);
       }
       render(){
         return(
