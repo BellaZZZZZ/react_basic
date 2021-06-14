@@ -17,6 +17,25 @@
   <!--引入prop-types 用于对组件标签属性进行限制-->
   <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
   <script type="text/babel"> 
+    /*
+      1. 初始化阶段：由ReactDOM.render()触发---初次渲染
+        1.1 constructor()
+        1.2 getDerivedStateFromProps()
+        1.3 render()
+        1.4 componentDidMount() ===>常用
+          1.4.1 一般在这个钩子中做一些初始化的事，例如：开启定时器、发送网络请求、订阅消息
+      2. 更新阶段：由组件内部this.setState()或父组件重新render触发
+        2.1 getDerivedStateFromProps()
+        2.2 componentWillUpdate()
+        2.3 render() ===>必须使用的一个
+        2.4 getSnapshotBeforeUpdate()
+        2.5 componentDidUpdate()
+
+      3. 卸载组件：由ReactDOM.unmountComponentAtNode()触发
+        3.1 componentWillUnmount() ===>常用
+          3.1.1 一般在这个钩子中做一些收尾的事，例如：关闭定时器、取消订阅消息
+
+    */
     //创建组件
     class Count extends React.Component{
       //构造器
@@ -51,7 +70,7 @@
       //
       getSnapshotBeforeUpdate(){
         console.log('Count---getSnapshotBeforeUpdate');
-        return null
+        return 'atguigu'
       }
       //组件挂载完毕的钩子
       componentDidMount(){
@@ -68,8 +87,8 @@
       }
       
       //组件更新完毕的钩子
-      componentDidUpdate(){
-        console.log('Count---componentDidUpdate');
+      componentDidUpdate(preProps,preState,snapshotValue){
+        console.log('Count---componentDidUpdate',preProps,preState,snapshotValue);
       }
       render(){
         console.log('Count---render');
