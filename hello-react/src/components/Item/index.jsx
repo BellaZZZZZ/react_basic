@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
+import './index.css'
 
 export default class Item extends Component {
   render() {
-    return (
-      <div>
-        
-      </div>
+    return ( 
+      <li>
+        <label>
+          <input type="checkbox"/>
+          <span>xxxxx</span>
+        </label>
+        <button classNameName="btn btn-danger" style={{display:'none'}}>删除</button>
+      </li>
     )
   }
 }
