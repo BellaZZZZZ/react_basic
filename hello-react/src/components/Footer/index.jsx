@@ -5,7 +5,7 @@ export default class Footer extends Component {
   render() {
     return (
       <div>
-        <div classNameName="todo-footer">
+        <div className="todo-footer">
           <label>
             <input type="checkbox"/>
           </label>
